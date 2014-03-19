@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "ember": "~1.4.0",
-    "ember-data": "~0.0.14"
+    "ember": "~1.4.0"
   }
 }
