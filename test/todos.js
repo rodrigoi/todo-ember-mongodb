@@ -35,6 +35,50 @@ describe('Todos', function(){
       });
   });
 
+  it('should filter pending items if query parameters are sent', function(done) {
+    var findStub = sinon.stub(mongoose.model('Todo'), 'find', function(params, callback){
+      callback(null, [ {}, {} ]);
+    });
+
+    request(app)
+      .get('/todos?done=false')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        res.body.should.have.length(2);
+
+        findStub.should.have.been.calledOnce;
+        findStub.should.have.been.calledWith({ done: 'false' });
+
+        findStub.restore();
+
+        done();
+      });
+  });
+
+  it('should filter completed items if query parameters are sent', function(done) {
+    var findStub = sinon.stub(mongoose.model('Todo'), 'find', function(params, callback){
+      callback(null, [ {}, {} ]);
+    });
+
+    request(app)
+      .get('/todos?done=true')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        res.body.should.have.length(2);
+
+        findStub.should.have.been.calledOnce;
+        findStub.should.have.been.calledWith({ done: 'true' });
+
+        findStub.restore();
+
+        done();
+      });
+  });
+
   it('should save a new todo item', function(done) {
     var todo = { title: 'snafu', done: false };
 

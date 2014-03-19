@@ -69,7 +69,13 @@ app.get('/', function(req, res){
 });
 
 app.get('/todos', function(req, res) {
-  Todo.find({}, function(err, todos) {
+  var query = {};
+
+  if(req.query.hasOwnProperty('done')){
+    query.done = req.query.done;
+  }
+
+  Todo.find(query, function(err, todos) {
     res.send(todos);
   })
 });

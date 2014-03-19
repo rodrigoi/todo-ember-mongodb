@@ -24,26 +24,31 @@
 
   Todos.TodosRoute = Ember.Route.extend({
     model: function(){
-      console.log('here here');
-      return Todos.Todo.fetch();
+      return this.store.find('todo');
+    }
+  });
+
+  Todos.TodosIndexRoute = Ember.Route.extend({
+    model: function () {
+      return this.modelFor('todos');
     }
   });
 
   Todos.TodosActiveRoute = Ember.Route.extend({
     model: function(){
-      return [];
+      return this.store.find('todo', { done: false });
     },
     renderTemplate: function(controller) {
-      this.render('todos', { controller: controller });
+      this.render('todos/index', { controller: controller });
     }
   });
 
   Todos.TodosCompletedRoute = Ember.Route.extend({
     model: function() {
-      return [];
+      return this.store.find('todo', { done: true });
     },
     renderTemplate: function(controller) {
-      this.render('todos', {controller: controller});
+      this.render('todos/index', {controller: controller});
     }
   });
 
