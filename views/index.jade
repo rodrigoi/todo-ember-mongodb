@@ -9,19 +9,7 @@ block content
         section#main
           input#toggle-all(type='checkbox')
           label(for='toggle-all') Mark all as complete
-          ul#todo-list
-            {{#each itemController="todo"}}
-            <li {{bind-attr class="done:completed isEditing:editing"}}>
-            {{#if isEditing}}
-            {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
-            {{else}}
-            .view
-              {{input type="checkbox" checked=done class="toggle"}}
-              <label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
-              <button {{action "remove"}} class="destroy"></button>
-            {{/if}}
-            </li>
-            {{/each}}
+          {{outlet}}
         footer#footer
           span#todo-count
             strong {{remaining}} 
@@ -47,3 +35,18 @@ block content
           p
             | Inspired by
             a(href='http://todomvc.com') TodoMVC
+
+  script(type='text/x-handlebars', data-template-name='todos/index')
+    ul#todo-list
+      {{#each itemController="todo"}}
+      <li {{bind-attr class="done:completed isEditing:editing"}}>
+      {{#if isEditing}}
+      {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+      {{else}}
+      .view
+        {{input type="checkbox" checked=done class="toggle"}}
+        <label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+        <button {{action "remove"}} class="destroy"></button>
+      {{/if}}
+      </li>
+      {{/each}}
