@@ -1,0 +1,13 @@
+{
+  "name": "simple-todo",
+  "version": "0.0.0",
+  "authors": [
+    "Rodrigo Iloro <rodrigo.iloro@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "ember": "~1.4.0",
+    "ember-data": "~0.0.14"
+  }
+}

@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  script(type='text/x-handlebars', data-template-name='todos')
+    section#todoapp
+      header#header
+          h1 todos
+          {{input type="text" id="new-todo" placeholder="What needs to be done?" value=title action="createTodo"}}
+        section#main
+          input#toggle-all(type='checkbox')
+          label(for='toggle-all') Mark all as complete
+          ul#todo-list
+            {{#each itemController="todo"}}
+            <li {{bind-attr class="done:completed isEditing:editing"}}>
+            {{#if isEditing}}
+            {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+            {{else}}
+            .view
+              {{input type="checkbox" checked=done class="toggle"}}
+              <label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+              <button {{action "remove"}} class="destroy"></button>
+            {{/if}}
+            </li>
+            {{/each}}
+        footer#footer
+          span#todo-count
+            strong {{remaining}} 
+            | {{inflection}} left
+          ul#filters
+            li
+              {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
+            li
+              {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+            li
+              {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+          {{#if hasCompleted}}
+          <button id="clear-completed" {{action "clearCompleted"}}>Clear completed ({{completed}})</button>
+          {{/if}}
+    footer#info
+        p Double-click to edit a todo
+          p
+            | Template by
+            a(href='http://github.com/sindresorhus') Sindre Sorhus
+          p
+            | Created by
+            a(href='http://todomvc.com') you
+          p
+            | Inspired by
+            a(href='http://todomvc.com') TodoMVC
