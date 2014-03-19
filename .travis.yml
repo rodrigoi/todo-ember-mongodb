@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+services: mongodb
+before_script:
+- npm install -g mocha
+- npm install -g bower
+- npm install
+- bower install
+script: mocha --recursive --reporter spec
+notifications:
+  email:
+    on_failure: change
+env:
+  global:
+  - secure: F/baaTc/RBKlCRYqnsjYX62i1ZAk7aG/L5Lq+/i4GKfttXdASpFroRt63fqUJ0SoFjqz4Bz94zcynvt+otcVywZN7rPflXW9hAkh7Key08tNCEioxCwoCLEMZzLLWiqtsqZDLe8ud3VkwoHMIiQrVxeJSEZRqoWyijlC9MqnppU=
+  - secure: cNftZ3NnADFEy+ciQ9xsEqTy0lyTROcSKCWwPsWRx3exteKasYtuPfS5TwXUTozr6BsDgxAJD1ku/BvvQvN9Y0xYQj3tupJmQPXROPlxDHBUwfTzGg0VHkamIYchGo7//43WWG3WP4U0/pJLIezX/N9xpoWUMX9E0vpwagnAjcM=
+  - secure: Oz+i1zvAHvNjc6UFjCVj3+yZwQaF76q8ETefuPbdaNw5ZUKa+q4HWEifBC+GQXdcmxEopRb1uSqkyCj8xLL/7zL6K0HkR2etxQ61ZbPSQCyu2DgPpUtoHU+39QY4vgyjEP/N34BODWy+LejLbMjd03v68qLzPBi83DOxiK3VQSY=
+  - secure: OO2ZDtxsOKU+wh+RrPyFdg8n7kAR7+t0KuEjvmnBb9h24rakoPFJlM52xlepY3/QnJXGGCxzuGph6d4DDpQ3zAU/w2BMmDGhNqj/tB8p66a7WbPsFUKf5IRMQ29g6MhKTgEF5doiRjBvhDmGYCJck/TQX5Ck/QDnhX9+ZURAilc=
+deploy:
+  provider: heroku
+  api_key:
+    secure: QcC6Qeig/H3AQuE8dxLlajbNplv5fpLrBOW44Mbz9/WNR12fyjDwfTxTZejUe7tnUenReM6j8/tobT/IlMC4hY+zsW5T/355TP9M3qBqfA+i/SxTDKc4YGTODKLyL1sCi0pT3cVxUt7yPe0ZwfnX1J1SZ6gpo2cIAaI4v0F8oEg=
+  app: todo-ember-mongodb
+  on:
+    repo: rodrigoi/todo-ember-mongodb
