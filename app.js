@@ -1,6 +1,6 @@
 var config = {
   port: process.env.PORT || 3000,
-  mongodb: process.env.MONGOLAB_URI || "mongodb://localhost/todo",
+  mongodb: process.env.MONGOHQ_URL || "mongodb://localhost/todo",
   twilio: {
     accountSID: process.env.TWILIO_ACCOUNT_SID,
     auth_token: process.env.TWILIO_AUTH_TOKEN,
