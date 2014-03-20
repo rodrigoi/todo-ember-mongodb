@@ -103,7 +103,7 @@ app.put('/todos', function(req, res) {
       twilioClient.sms.messages.create({
         to: config.twilio.to,
         from: config.twilio.from,
-        body: '"' + todo.title + '" task has been marked as done.'
+        body: '\"' + todo.title + '\" task has been marked as done.'
       }, function(err, message) {
         if(err) {
           console.log('error sending sms', err);
